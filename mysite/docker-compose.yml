@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:5006
+        restart: always
+        volumes:
+            - .:/django_code_polls
+        ports:
+            - "5006:5006"
+        depends_on:
+            - db
+
+
